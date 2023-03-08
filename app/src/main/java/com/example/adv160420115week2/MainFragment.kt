@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.Navigation
+import com.google.android.material.textfield.TextInputEditText
 
 class MainFragment : Fragment() {
 
@@ -21,9 +22,13 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val btnStart = view.findViewById<Button>(R.id.btnStart)
+        val txtNameEdit = view.findViewById<TextInputEditText>(R.id.txtNameEdit)
         btnStart.setOnClickListener {
-            val action = MainFragmentDirections.actionGameFragment()
+
+            val playerName = txtNameEdit.text.toString()
+            val action = MainFragmentDirections.actionGameFragment(playerName)
             Navigation.findNavController(it).navigate(action)
         }
+
     }
 }
