@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.navigation.Navigation
+import kotlin.random.Random
 
 class GameFragment : Fragment() {
 
@@ -27,11 +29,24 @@ class GameFragment : Fragment() {
                 GameFragmentArgs.fromBundle(requireArguments()).playerName
             txtName.text = "$playerName's Turn"
         }
-        val btnBack = view.findViewById<Button>(R.id.btnBack)
-        btnBack.setOnClickListener {
-            val action = GameFragmentDirections.actionMainFragment()
+//        val btnBack = view.findViewById<Button>(R.id.btnBack)
+//        btnBack.setOnClickListener {
+//            val action = GameFragmentDirections.actionMainFragment()
+//            Navigation.findNavController(it).navigate(action)
+//        }
+        val num1 = Random.nextInt(0, 100)
+        val num2 = Random.nextInt(0, 100)
+        val result = num1 + num2
+        view.findViewById<TextView>(R.id.txtQuestion).text = "$num1 + $num2"
+        val btnCheck = view.findViewById<Button>(R.id.btnCheck)
+        var status = false // lose the game
+        btnCheck.setOnClickListener {
+            val numTotal = view.findViewById<EditText>(R.id.numTotal)
+            if (Integer.parseInt(numTotal.text.toString()) == result){
+                status = true // win the game
+            }
+            val action = GameFragmentDirections.actionGameOverFragment(status)
             Navigation.findNavController(it).navigate(action)
-
         }
     }
 }

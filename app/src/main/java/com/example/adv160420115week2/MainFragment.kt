@@ -24,7 +24,6 @@ class MainFragment : Fragment() {
         val btnStart = view.findViewById<Button>(R.id.btnStart)
         val txtNameEdit = view.findViewById<TextInputEditText>(R.id.txtNameEdit)
         btnStart.setOnClickListener {
-
             val playerName = txtNameEdit.text.toString()
             val action = MainFragmentDirections.actionGameFragment(playerName)
             Navigation.findNavController(it).navigate(action)
