@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/game_navigation"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/itemMain">
 
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/itemMain"
         android:name="com.example.adv160420115week2.MainFragment"
         android:label="Main Screen"
         tools:layout="@layout/fragment_main" >
@@ -24,7 +24,11 @@
             app:argType="string" />
         <action
             android:id="@+id/actionGameOverFragment"
-            app:destination="@id/gameOverFragment" />
+            app:destination="@id/gameOverFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_gameFragment_to_itemHome"
+            app:destination="@id/itemMain" />
     </fragment>
     <fragment
         android:id="@+id/gameOverFragment"
@@ -33,9 +37,19 @@
         tools:layout="@layout/fragment_game_over">
         <action
             android:id="@+id/actionMainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/itemMain" />
         <argument
             android:name="status"
             app:argType="boolean" />
     </fragment>
+    <fragment
+        android:id="@+id/itemHistory"
+        android:name="com.example.adv160420115week2.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/itemProfile"
+        android:name="com.example.adv160420115week2.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
